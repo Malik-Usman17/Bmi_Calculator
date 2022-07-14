@@ -11,8 +11,16 @@ class BMICalculator extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData.dark().copyWith(
-        primaryColor: const Color(0xFF0A0E21),
-        scaffoldBackgroundColor: const Color(0xFF0A0E21)
+          // sliderTheme: SliderTheme.of(context).copyWith(   //we can also use that if we use the same slider theme
+          //     activeTrackColor: Colors.white,              //across the whole app
+          //     thumbColor: const Color(0xFFEB1555),
+          //     overlayColor: const Color(0x29EB1555),
+          //     thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 15.0),
+          //     overlayShape: const RoundSliderOverlayShape(overlayRadius: 30.0)
+          // ),
+          appBarTheme: const AppBarTheme(color: Color(0xFF0A0E21)),
+          primaryColor: const Color(0xFF0A0E21),
+          scaffoldBackgroundColor: const Color(0xFF0A0E21)
       ),
       // theme: ThemeData(
       //   colorScheme: ColorScheme.fromSwatch(
