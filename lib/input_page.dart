@@ -21,6 +21,7 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
   Gender? selectedGender;
   int height = 180;
+  int weight = 60;
 
   // Color maleCardColor = inactiveCardColor;
   // Color femaleCardColor = inactiveCardColor;
@@ -44,9 +45,7 @@ class _InputPageState extends State<InputPage> {
                           selectedGender = Gender.male;
                         });
                       },
-                      color: selectedGender == Gender.male
-                          ? activeCardColor
-                          : inactiveCardColor,
+                      color: selectedGender == Gender.male ? activeCardColor : inactiveCardColor,
                       cardChild: const IconContainer(
                         myIcon: FontAwesomeIcons.mars,
                         label: 'MALE',
@@ -120,8 +119,18 @@ class _InputPageState extends State<InputPage> {
             ),
             Expanded(
               child: Row(
-                children: const [
-                  Expanded(child: ReusableCard(color: activeCardColor)),
+                children: [
+                  Expanded(child: ReusableCard(
+                    color: activeCardColor,
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text('WEIGHT', style: labelTextStyle,),
+                        Text(weight.toString(), style: kNumberTextStyle)
+                      ],
+                    ),
+                  ),
+                  ),
                   Expanded(child: ReusableCard(color: activeCardColor))
                 ],
               ),
