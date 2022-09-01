@@ -125,8 +125,31 @@ class _InputPageState extends State<InputPage> {
                     cardChild: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text('WEIGHT', style: labelTextStyle,),
-                        Text(weight.toString(), style: kNumberTextStyle)
+                        const Text('WEIGHT', style: labelTextStyle,),
+                        Text(weight.toString(), style: kNumberTextStyle),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundIconButton(),
+                            // FloatingActionButton(
+                            //   backgroundColor: const Color(0xFF4C4F5E),
+                            //   onPressed: (){},
+                            //   child: const Icon(
+                            //     Icons.add,
+                            //     color: Colors.white,
+                            //   ),
+                            // ),
+                            const SizedBox(width: 10.0),
+                            FloatingActionButton(
+                              backgroundColor: const Color(0xFF4C4F5E),
+                              onPressed: (){},
+                              child: const Icon(
+                                Icons.add,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+                        ),
                       ],
                     ),
                   ),
@@ -146,3 +169,19 @@ class _InputPageState extends State<InputPage> {
     );
   }
 }
+
+class RoundIconButton extends StatelessWidget {
+  const RoundIconButton({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      constraints: const BoxConstraints.tightFor(width: 56, height: 56),
+      elevation: 6.0,
+      shape: const CircleBorder(),
+      fillColor: const Color(0xFF4C4F5E),
+      onPressed: (){},
+    );
+  }
+}
+
