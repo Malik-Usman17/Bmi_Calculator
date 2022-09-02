@@ -22,6 +22,7 @@ class _InputPageState extends State<InputPage> {
   Gender? selectedGender;
   int height = 180;
   int weight = 60;
+  int age = 22;
 
   // Color maleCardColor = inactiveCardColor;
   // Color femaleCardColor = inactiveCardColor;
@@ -130,23 +131,22 @@ class _InputPageState extends State<InputPage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            RoundIconButton(),
-                            // FloatingActionButton(
-                            //   backgroundColor: const Color(0xFF4C4F5E),
-                            //   onPressed: (){},
-                            //   child: const Icon(
-                            //     Icons.add,
-                            //     color: Colors.white,
-                            //   ),
-                            // ),
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.minus,
+                              onPressed: () {
+                                setState(() {
+                                  weight--;
+                                });
+                              },
+                            ),
                             const SizedBox(width: 10.0),
-                            FloatingActionButton(
-                              backgroundColor: const Color(0xFF4C4F5E),
-                              onPressed: (){},
-                              child: const Icon(
-                                Icons.add,
-                                color: Colors.white,
-                              ),
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.plus,
+                              onPressed: () {
+                                setState(() {
+                                  weight++;
+                                });
+                              },
                             ),
                           ],
                         ),
@@ -154,7 +154,46 @@ class _InputPageState extends State<InputPage> {
                     ),
                   ),
                   ),
-                  Expanded(child: ReusableCard(color: activeCardColor))
+                  Expanded(
+                    child: ReusableCard(
+                      color: activeCardColor,
+                      cardChild: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text(
+                            'AGE',
+                            style: labelTextStyle,
+                          ),
+                          Text(
+                            age.toString(),
+                            style: kNumberTextStyle,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              RoundIconButton(
+                                icon: FontAwesomeIcons.minus,
+                                onPressed: (){
+                                  setState(() {
+                                    age--;
+                                  });
+                                },
+                              ),
+                              const SizedBox(width: 10),
+                              RoundIconButton(
+                                icon: FontAwesomeIcons.plus,
+                                onPressed: (){
+                                  setState(() {
+                                    age++;
+                                  });
+                                },
+                              )
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                  )
                 ],
               ),
             ),
@@ -171,16 +210,21 @@ class _InputPageState extends State<InputPage> {
 }
 
 class RoundIconButton extends StatelessWidget {
-  const RoundIconButton({Key? key}) : super(key: key);
+  const RoundIconButton({Key? key, required this.icon, required this.onPressed}) : super(key: key);
+
+  final IconData icon;
+  // final Function onPressed;
+ final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
     return RawMaterialButton(
       constraints: const BoxConstraints.tightFor(width: 56, height: 56),
       elevation: 6.0,
-      shape: const CircleBorder(),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       fillColor: const Color(0xFF4C4F5E),
-      onPressed: (){},
+      onPressed: onPressed,
+      child: Icon(icon)
     );
   }
 }
